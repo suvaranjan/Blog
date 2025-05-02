@@ -12,7 +12,8 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 })
 
-export default [
+// 1. Assign config to a variable
+const eslintConfig = [
   {
     ignores: [],
   },
@@ -29,28 +30,23 @@ export default [
     plugins: {
       '@typescript-eslint': typescriptEslint,
     },
-
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.amd,
         ...globals.node,
       },
-
       parser: tsParser,
       ecmaVersion: 5,
       sourceType: 'commonjs',
-
       parserOptions: {
         project: true,
         tsconfigRootDir: __dirname,
       },
     },
-
     rules: {
-      'prettier/prettier': 'error',
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
       'react/react-in-jsx-scope': 'off',
-
       'jsx-a11y/anchor-is-valid': [
         'error',
         {
@@ -65,6 +61,10 @@ export default [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
+      // '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ]
+
+// 2. Export the variable
+export default eslintConfig
