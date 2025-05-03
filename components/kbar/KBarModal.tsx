@@ -1,3 +1,5 @@
+// noinspection TypeScriptMissingConfigOption
+
 import {
   KBarPortal,
   KBarSearch,
@@ -8,53 +10,50 @@ import {
   Action,
   useRegisterActions,
 } from 'kbar'
+import { Icon, IconName } from '../MyIcons'
 
 export const KBarModal = ({ actions, isLoading }: { actions: Action[]; isLoading: boolean }) => {
   useRegisterActions(actions, [actions])
 
   return (
     <KBarPortal>
-      <KBarPositioner className="z-50 bg-black/20 p-2 backdrop-blur-sm dark:bg-black/40">
-        <KBarAnimator className="w-full max-w-xl overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
-          <div className="flex items-center border-b border-neutral-100 px-4 py-3 dark:border-neutral-800">
-            <span className="mr-3 text-neutral-400 dark:text-neutral-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-            </span>
-            <KBarSearch
-              className="flex-1 border-none bg-transparent text-sm text-neutral-800 placeholder-neutral-400 focus:ring-0 focus:outline-none dark:text-neutral-200 dark:placeholder-neutral-600"
-              placeholder="Search commands..."
-            />
-
-            <span className="rounded border border-neutral-200 px-2 py-1 text-xs text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
-              ESC
-            </span>
+      <KBarPositioner className="z-50 bg-gray-300/50 p-4 backdrop-blur backdrop-filter dark:bg-black/50">
+        <KBarAnimator className="w-full max-w-xl">
+          <div className="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-neutral-900">
+            <div className="flex items-center space-x-4 p-4">
+              <span className="block w-5">
+                <svg
+                  className="text-gray-400 dark:text-gray-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </span>
+              <KBarSearch className="h-8 w-full border-none bg-transparent pl-0 text-gray-600 placeholder-gray-400 focus:ring-0 focus:outline-none dark:text-gray-200 dark:placeholder-gray-500" />
+              <kbd className="inline-block rounded border border-gray-400 px-1.5 align-middle text-xs leading-4 font-medium tracking-wide whitespace-nowrap text-gray-400">
+                ESC
+              </kbd>
+            </div>
+            {!isLoading && <RenderResults />}
+            {isLoading && (
+              <div className="block border-t border-gray-100 px-4 py-8 text-center text-gray-400 dark:border-gray-800 dark:text-gray-600">
+                Loading...
+              </div>
+            )}
           </div>
-
-          {!isLoading ? <RenderResults /> : <LoadingIndicator />}
         </KBarAnimator>
       </KBarPositioner>
     </KBarPortal>
   )
 }
-
-const LoadingIndicator = () => (
-  <div className="px-4 py-6 text-center">
-    <span className="text-sm text-neutral-500 dark:text-neutral-400">Loading...</span>
-  </div>
-)
 
 const RenderResults = () => {
   const { results } = useMatches()
@@ -66,48 +65,44 @@ const RenderResults = () => {
         onRender={({ item, active }) => (
           <div>
             {typeof item === 'string' ? (
-              <div className="px-4 pt-3 pb-1 text-xs tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+              <div className="text-primary-600 dark:text-primary-400 block px-4 pt-5 pb-2 text-xs font-semibold uppercase dark:border-neutral-800">
                 {item}
               </div>
             ) : (
               <div
-                className={`mt-1 flex cursor-pointer items-center justify-between px-4 py-3 ${active ? 'bg-neutral-100 dark:bg-neutral-800' : 'bg-transparent'}`}
+                className={`flex cursor-pointer justify-between px-4 py-2 ${
+                  active
+                    ? 'bg-primary-600 dark:bg-primary-800 text-gray-100'
+                    : 'bg-transparent text-gray-700 dark:text-gray-100'
+                }`}
               >
-                <div className="flex items-center">
-                  {item.icon && (
-                    <div
-                      className={`mr-3 ${active ? 'text-neutral-600 dark:text-neutral-300' : 'text-neutral-400 dark:text-neutral-500'}`}
-                    >
-                      {item.icon}
-                    </div>
-                  )}
-                  <div>
-                    <div
-                      className={`text-sm ${active ? 'text-black dark:text-white' : 'text-neutral-700 dark:text-neutral-300'}`}
-                    >
-                      {item.name}
-                    </div>
-                    {item.subtitle && (
-                      <div
-                        className={`text-xs ${active ? 'text-neutral-500 dark:text-neutral-400' : 'text-neutral-400 dark:text-neutral-500'}`}
-                      >
-                        {item.subtitle}
-                      </div>
-                    )}
-                  </div>
+                <div className="flex items-center space-x-2">
+                  {item.icon && typeof item.icon === 'string' ? (
+                    <Icon
+                      name={item.icon as IconName}
+                      w={20}
+                      h={20}
+                      className={`${active ? 'text-white' : 'text-gray-400 dark:text-gray-300'}`}
+                    />
+                  ) : null}
+                  <span className="text-sm font-medium">{item.name}</span>
                 </div>
-                {item.shortcut?.length && (
-                  <div className="flex gap-1">
+                {item.shortcut?.length ? (
+                  <div aria-hidden className="flex flex-row items-center gap-x-2">
                     {item.shortcut.map((sc) => (
                       <kbd
                         key={sc}
-                        className={`text-xs ${active ? 'bg-neutral-200 text-neutral-500 dark:bg-neutral-700 dark:text-neutral-400' : 'bg-neutral-100 text-neutral-400 dark:bg-neutral-800 dark:text-neutral-500'} rounded px-2 py-1`}
+                        className={`flex h-6 min-w-[1.5rem] items-center justify-center rounded-md bg-gray-100 px-1 text-xs font-semibold text-gray-600 ${
+                          active
+                            ? 'bg-white text-gray-900'
+                            : 'dark:bg-neutral-800 dark:text-gray-400'
+                        }`}
                       >
                         {sc}
                       </kbd>
                     ))}
                   </div>
-                )}
+                ) : null}
               </div>
             )}
           </div>
@@ -117,8 +112,8 @@ const RenderResults = () => {
   }
 
   return (
-    <div className="px-4 py-6 text-center">
-      <span className="text-sm text-neutral-500 dark:text-neutral-400">No results found</span>
+    <div className="block border-t border-gray-100 px-4 py-8 text-center text-gray-400 dark:border-gray-800 dark:text-gray-600">
+      No results for your search...
     </div>
   )
 }

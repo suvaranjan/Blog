@@ -3,7 +3,7 @@ import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
 import { Inter } from 'next/font/google'
-import { SearchProvider } from '@/components/kbar/SearchProvider'
+import { KBarSearchProvider } from '@/components/kbar/KBar'
 import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'
@@ -96,10 +96,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-neutral-900 dark:text-white">
         <ThemeProviders>
           <SectionContainer>
-            <SearchProvider>
+            <KBarSearchProvider>
               <Header />
               <main className="mb-auto">{children}</main>
-            </SearchProvider>
+            </KBarSearchProvider>
             <Footer />
           </SectionContainer>
         </ThemeProviders>

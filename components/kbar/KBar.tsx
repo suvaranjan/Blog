@@ -1,66 +1,35 @@
 'use client'
 
-import { useState, useEffect, FC, ReactNode } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, ReactNode } from 'react'
 import { KBarProvider } from 'kbar'
 import { KBarModal } from './KBarModal'
-import type { Action } from 'kbar'
-import { CoreContent, MDXDocument } from '../../utils/contentlayer'
-import { formatDate } from '../../utils/formatDate'
+import { Action } from 'kbar'
+import { useKBarActions } from './useKBarActions'
 
-export interface KBarSearchProps {
-  searchDocumentsPath: string | false
-  defaultActions?: Action[]
-  onPostsToActions?: (posts: CoreContent<MDXDocument>[]) => Action[]
+interface KBarSearchProviderProps {
+  children: ReactNode
 }
 
-export const KBarSearchProvider: FC<{
-  children: ReactNode
-  kbarConfig: KBarSearchProps
-}> = ({ kbarConfig, children }) => {
-  const router = useRouter()
-  const { searchDocumentsPath, defaultActions, onPostsToActions } = kbarConfig
-
-  const [dynamicActions, setDynamicActions] = useState<Action[]>([])
-  const [loaded, setLoaded] = useState(false)
+export const KBarSearchProvider = ({ children }: KBarSearchProviderProps) => {
+  const [actions, setActions] = useState<Action[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasFetched, setHasFetched] = useState(false)
+  const { defaultActions, fetchBlogActions } = useKBarActions()
 
   useEffect(() => {
-    const defaultMapToActions = (posts: CoreContent<MDXDocument>[]) => {
-      return posts.map((post) => ({
-        id: post.path,
-        name: post.title,
-        keywords: post.summary || '',
-        section: 'Content',
-        subtitle: formatDate(post.date, 'en-US'),
-        perform: () => router.push('/' + post.path),
-      }))
+    if (!hasFetched) {
+      fetchBlogActions()
+        .then((blogActions) => {
+          setActions(blogActions)
+          setHasFetched(true)
+        })
+        .finally(() => setIsLoading(false))
     }
-
-    async function loadSearchData() {
-      if (!searchDocumentsPath) return
-
-      const url = searchDocumentsPath.startsWith('http')
-        ? searchDocumentsPath
-        : new URL(searchDocumentsPath, window.location.origin)
-
-      const res = await fetch(url.toString())
-      const posts = await res.json()
-
-      const actions = onPostsToActions ? onPostsToActions(posts) : defaultMapToActions(posts)
-      setDynamicActions(actions)
-      setLoaded(true)
-    }
-
-    if (!loaded && searchDocumentsPath) {
-      loadSearchData()
-    } else {
-      setLoaded(true)
-    }
-  }, [searchDocumentsPath, defaultActions, loaded, onPostsToActions, router])
+  }, [fetchBlogActions, hasFetched])
 
   return (
-    <KBarProvider actions={defaultActions}>
-      <KBarModal actions={dynamicActions} isLoading={!loaded} />
+    <KBarProvider actions={[...defaultActions, ...actions]}>
+      <KBarModal actions={actions} isLoading={isLoading} />
       {children}
     </KBarProvider>
   )
