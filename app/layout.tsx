@@ -4,12 +4,13 @@ import 'remark-github-blockquote-alert/alert.css'
 
 import { Inter } from 'next/font/google'
 import { KBarSearchProvider } from '@/components/kbar/KBar'
-import Header from '@/components/Header'
-import SectionContainer from '@/components/SectionContainer'
-import Footer from '@/components/Footer'
+import Container from '@/components/Container'
 import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
+import Navbar from '@/components/nav-footer/Navbar'
+import Footer from '@/components/nav-footer/Footer'
+// import Footer from '@/components/nav-footer/Footer'
 
 const space_grotesk = Inter({
   subsets: ['latin'],
@@ -95,13 +96,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-neutral-900 dark:text-white">
         <ThemeProviders>
-          <SectionContainer>
-            <KBarSearchProvider>
-              <Header />
+          <KBarSearchProvider>
+            <Navbar />
+            <Container>
               <main className="mb-auto">{children}</main>
-            </KBarSearchProvider>
+            </Container>
             <Footer />
-          </SectionContainer>
+          </KBarSearchProvider>
         </ThemeProviders>
       </body>
     </html>

@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @config '../tailwind.config.js';
-@source '../node_modules/pliny';
+/* @source '../node_modules/pliny'; */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Core theme configuration */
@@ -162,7 +162,7 @@ html.dark .shiki span {
 /* Code block title style. Feel free to edit */
 .remark-code-title {
   @apply relative border-t border-r border-l border-gray-200 px-4 py-3 font-mono text-sm font-semibold dark:border-none;
-  @apply bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300;
+  @apply bg-neutral-100 text-gray-600 dark:bg-neutral-800 dark:text-gray-300;
   @apply rounded-t-md;
   padding-right: 3.5rem; /* Make space for dots */
 }

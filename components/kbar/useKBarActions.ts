@@ -4,19 +4,26 @@ import { useRouter } from 'next/navigation'
 import { Action } from 'kbar'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { Blog } from 'contentlayer/generated'
-import { formatDate } from 'utils/formatDate'
 
 export const useKBarActions = () => {
   const router = useRouter()
 
   const defaultActions: Action[] = [
     {
-      id: 'homepage',
-      name: 'Homepage',
+      id: 'home-page',
+      name: 'Home',
       shortcut: ['h'],
       section: 'Navigation',
-      icon: 'Home',
+      icon: 'home',
       perform: () => router.push('/'),
+    },
+    {
+      id: 'blog-page',
+      name: 'Blog',
+      shortcut: ['b'],
+      section: 'Navigation',
+      icon: 'book',
+      perform: () => router.push('/blog'),
     },
   ]
 
@@ -28,8 +35,8 @@ export const useKBarActions = () => {
       id: `${post.path}-${index}`,
       name: post.title,
       keywords: post.summary || '',
-      section: 'Blog',
-      icon: 'Reader',
+      section: 'Writtings',
+      icon: 'blog',
       perform: () => router.push('/' + post.path),
     }))
   }

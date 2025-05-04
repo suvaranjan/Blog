@@ -11,7 +11,7 @@ interface KBarSearchProviderProps {
 }
 
 export const KBarSearchProvider = ({ children }: KBarSearchProviderProps) => {
-  const [actions, setActions] = useState<Action[]>([])
+  const [blogActions, setBlogActions] = useState<Action[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [hasFetched, setHasFetched] = useState(false)
   const { defaultActions, fetchBlogActions } = useKBarActions()
@@ -20,16 +20,18 @@ export const KBarSearchProvider = ({ children }: KBarSearchProviderProps) => {
     if (!hasFetched) {
       fetchBlogActions()
         .then((blogActions) => {
-          setActions(blogActions)
+          setBlogActions(blogActions)
           setHasFetched(true)
         })
         .finally(() => setIsLoading(false))
     }
   }, [fetchBlogActions, hasFetched])
 
+  const allActions = isLoading ? defaultActions : [...defaultActions, ...blogActions]
+
   return (
-    <KBarProvider actions={[...defaultActions, ...actions]}>
-      <KBarModal actions={actions} isLoading={isLoading} />
+    <KBarProvider>
+      <KBarModal actions={allActions} isLoading={false} />
       {children}
     </KBarProvider>
   )
