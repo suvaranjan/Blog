@@ -1,10 +1,10 @@
-import { Github, Linkedin, Mail, X, Home, Blog, Moon, Sun, Book } from './index' // Importing the SVG components
+import { Github, Linkedin, Mail, X, Home, Blog, Book, MenuOpen, MenuClose } from './index' // Importing the SVG components
 
 // === Social Icon Types ===
 export type SocialIconType = 'github' | 'linkedin' | 'mail' | 'x'
 
 // === Normal Icon Types ===
-export type NormalIconType = 'home' | 'blog' | 'moon' | 'sun'
+export type NormalIconType = 'home' | 'blog' | 'menuopen' | 'menuclose'
 
 // === Icons Mapping ===
 export const socialIcons = {
@@ -17,9 +17,9 @@ export const socialIcons = {
 export const normalIcons = {
   home: Home,
   blog: Blog,
-  moon: Moon,
-  sun: Sun,
   book: Book,
+  menuopen: MenuOpen,
+  menuclose: MenuClose,
 } as const
 
 // === Social Icon Component Props ===

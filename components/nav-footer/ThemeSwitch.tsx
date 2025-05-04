@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 
-const ThemeSwitch = () => {
+const ThemeSwitch = ({ size }: { size: number }) => {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
 
@@ -17,21 +17,17 @@ const ThemeSwitch = () => {
   const isDark = resolvedTheme === 'dark'
 
   return (
-    <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label="Toggle Theme"
-      className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-    >
+    <button onClick={() => setTheme(isDark ? 'light' : 'dark')} aria-label="Toggle Theme">
       {isDark ? (
         // Sun icon
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width={size}
+          height={size}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -49,12 +45,12 @@ const ThemeSwitch = () => {
         // Moon icon
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width={size}
+          height={size}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         >

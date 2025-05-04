@@ -35,7 +35,7 @@ export const useKBarActions = () => {
       id: `${post.path}-${index}`,
       name: post.title,
       keywords: post.summary || '',
-      section: 'Writtings',
+      section: 'Blog',
       icon: 'blog',
       perform: () => router.push('/' + post.path),
     }))
