@@ -16,7 +16,7 @@ export default async function HomePage() {
   )
 }
 
-export function HeroSection() {
+function HeroSection() {
   return (
     <div className="mx-auto mt-[15vh] mb-5 w-full md:mt-[15vh]">
       <div className="space-y-4 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
@@ -74,7 +74,7 @@ function RecentPosts({ posts }) {
   )
 }
 
-export function SocialLinks() {
+function SocialLinks() {
   return (
     <div className="mt-5 flex items-center gap-2 py-3 text-sm text-gray-500 dark:text-gray-400">
       <CustomLink
