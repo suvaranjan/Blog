@@ -1,9 +1,12 @@
-/* eslint-disable prettier/prettier */
 'use client'
 
 import { useState, useRef, ReactNode } from 'react'
 
-const Pre = ({ children, ...props }: { children: ReactNode; [key: string] }) => {
+type PreProps = React.HTMLAttributes<HTMLPreElement> & {
+  children: ReactNode
+}
+
+const Pre = ({ children, ...props }: PreProps) => {
   const preRef = useRef<HTMLPreElement>(null)
   const [copied, setCopied] = useState(false)
 
