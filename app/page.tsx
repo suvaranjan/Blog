@@ -12,7 +12,7 @@ export default async function HomePage() {
   const posts = allCoreContent(sortedPosts)
 
   return (
-    <div className="mx-auto flex min-h-screen flex-col px-4 pb-10 md:px-0">
+    <div className="flex min-h-screen flex-col pb-10">
       <HeroSection />
       <RecentPosts posts={posts} />
     </div>
@@ -22,15 +22,15 @@ export default async function HomePage() {
 function HeroSection() {
   return (
     <div className="mt-[15vh] mb-5 border-b border-gray-200 pb-10 md:mt-[15vh] dark:border-gray-700">
-      <div className="space-y-4 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+      <div className="space-y-4 text-lg leading-relaxed">
         <div className="flex items-center gap-2">
-          <span>Hi, I'm</span>
-          <CustomLink
+          <span className="font-medium">Hi, I'm Suvaranjan..</span>
+          {/* <CustomLink
             href="https://suvaranjan.vercel.app/"
             className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-gray-800 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-gray-200 dark:hover:bg-neutral-700"
           >
             @suvaranjan
-          </CustomLink>
+          </CustomLink> */}
         </div>
 
         <p className="text-gray-600 dark:text-gray-300">
@@ -45,8 +45,8 @@ function HeroSection() {
 function RecentPosts({ posts }: { posts: CoreContent<Blog>[] }) {
   return (
     <section className="w-full py-5">
-      <h2 className="mb-8 text-sm tracking-widest text-gray-700 uppercase dark:text-gray-400">
-        Latest Blog
+      <h2 className="mb-8 text-sm font-medium tracking-wider text-gray-700 uppercase dark:text-gray-400">
+        Latest Writting
       </h2>
 
       <ul className="space-y-10">
@@ -78,9 +78,23 @@ function RecentPosts({ posts }: { posts: CoreContent<Blog>[] }) {
       <div className="mt-8">
         <CustomLink
           href="/blog"
-          className="text-sm font-medium text-gray-700 hover:underline dark:text-gray-400"
+          className="inline-flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-400"
         >
-          Browse all Blog →
+          Browse all
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
         </CustomLink>
       </div>
     </section>
