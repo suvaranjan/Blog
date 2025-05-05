@@ -97,11 +97,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-neutral-900 dark:text-white">
         <ThemeProviders>
           <KBarSearchProvider>
-            <Navbar />
             <Container>
+              <Navbar />
               <main className="mb-auto">{children}</main>
+              <Footer />
             </Container>
-            <Footer />
           </KBarSearchProvider>
         </ThemeProviders>
       </body>

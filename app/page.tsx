@@ -21,7 +21,7 @@ export default async function HomePage() {
 
 function HeroSection() {
   return (
-    <div className="mx-auto mt-[15vh] mb-5 w-full border-b border-gray-200 pb-10 md:mt-[15vh] dark:border-gray-700">
+    <div className="mt-[15vh] mb-5 border-b border-gray-200 pb-10 md:mt-[15vh] dark:border-gray-700">
       <div className="space-y-4 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
         <div className="flex items-center gap-2">
           <span>Hi, I'm</span>
