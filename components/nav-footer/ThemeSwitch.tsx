@@ -43,26 +43,18 @@ const ThemeSwitch = ({ size }: { size: number }) => {
         </svg>
       ) : (
         // Moon icon
-        // <svg
-        //   xmlns="http://www.w3.org/2000/svg"
-        //   width={size}
-        //   height={size}
-        //   viewBox="0 0 24 24"
-        //   fill="none"
-        //   stroke="currentColor"
-        //   strokeWidth="1.5"
-        //   strokeLinecap="round"
-        //   strokeLinejoin="round"
-        // >
-        //   <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        // </svg>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
         </svg>
       )}
     </button>

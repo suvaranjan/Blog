@@ -22,7 +22,7 @@ const SearchButton = ({ size }: { size: number }) => {
       </div>
 
       {/* Desktop view: Full button */}
-      <div className="hidden cursor-pointer items-center rounded-md bg-neutral-200 px-3 py-2 text-sm text-gray-600 hover:bg-gray-200 hover:text-black sm:flex sm:w-30 md:w-48 lg:w-64 dark:bg-neutral-800 dark:text-gray-300 dark:hover:bg-neutral-700 dark:hover:text-white">
+      <div className="hidden cursor-pointer items-center rounded-md bg-gray-100 px-3 py-2 text-sm text-gray-600 hover:bg-gray-200 hover:text-black sm:flex sm:w-30 md:w-48 lg:w-64 dark:bg-neutral-800 dark:text-gray-300 dark:hover:bg-neutral-700 dark:hover:text-white">
         <span className="flex-1 truncate text-left">Search</span>
         <div className="ml-2 flex items-center gap-0.5 rounded bg-white px-1.5 py-0.5 text-xs text-black dark:bg-neutral-700 dark:text-white">
           <svg
