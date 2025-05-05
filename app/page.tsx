@@ -24,7 +24,7 @@ function HeroSection() {
     <div className="mt-[15vh] mb-5 border-b border-gray-200 pb-10 md:mt-[15vh] dark:border-gray-700">
       <div className="space-y-4 text-lg leading-relaxed">
         <div className="flex items-center gap-2">
-          <span className="font-medium">Hi, I'm Suvaranjan..</span>
+          <span className="text-xl font-medium">Hi, I'm Suvaranjan..</span>
           {/* <CustomLink
             href="https://suvaranjan.vercel.app/"
             className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-gray-800 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-gray-200 dark:hover:bg-neutral-700"

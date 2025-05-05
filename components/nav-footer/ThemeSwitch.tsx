@@ -17,16 +17,12 @@ const ThemeSwitch = () => {
   const isDark = resolvedTheme === 'dark'
 
   return (
-    <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label="Toggle Theme"
-      className="text-gray-600 dark:text-white"
-    >
+    <button onClick={() => setTheme(isDark ? 'light' : 'dark')} aria-label="Toggle Theme">
       {isDark ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="22"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -47,8 +43,8 @@ const ThemeSwitch = () => {
       ) : (
         // Moon icon
         <svg
-          width="20"
-          height="20"
+          width="22"
+          height="22"
           viewBox="0 0 15 15"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
