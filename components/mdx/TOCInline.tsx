@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-// toc.tsx
 'use client'
 
 import { VFile } from 'vfile'
