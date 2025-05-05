@@ -1,6 +1,9 @@
 import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
-import { allBlogs } from 'contentlayer/generated'
+import { allBlogs, Blog } from 'contentlayer/generated'
 import CustomLink from '@/components/Link'
+import { formatDate } from 'utils/formatDate'
+import Tag from '@/components/Tag'
+import { CoreContent } from 'utils/contentlayer'
 
 const MAX_DISPLAY = 3
 
@@ -9,7 +12,7 @@ export default async function HomePage() {
   const posts = allCoreContent(sortedPosts)
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-2xl flex-col px-4 pb-10 md:px-0">
+    <div className="mx-auto flex min-h-screen flex-col px-4 pb-10 md:px-0">
       <HeroSection />
       <RecentPosts posts={posts} />
     </div>
@@ -18,13 +21,13 @@ export default async function HomePage() {
 
 function HeroSection() {
   return (
-    <div className="mx-auto mt-[15vh] mb-5 w-full md:mt-[15vh]">
+    <div className="mx-auto mt-[15vh] mb-5 w-full border-b border-gray-200 pb-10 md:mt-[15vh] dark:border-gray-700">
       <div className="space-y-4 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
         <div className="flex items-center gap-2">
           <span>Hi, I'm</span>
           <CustomLink
             href="https://suvaranjan.vercel.app/"
-            className="hover:bg-nneutral-200 inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-gray-800 dark:bg-neutral-800 dark:text-gray-200 dark:hover:bg-neutral-700"
+            className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-gray-800 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-gray-200 dark:hover:bg-neutral-700"
           >
             @suvaranjan
           </CustomLink>
@@ -35,68 +38,51 @@ function HeroSection() {
           little archive is where I try to trap those cool thoughts before they vanish forever.
         </p>
       </div>
-      {/* <SocialLinks /> */}
     </div>
   )
 }
 
-function RecentPosts({ posts }) {
+function RecentPosts({ posts }: { posts: CoreContent<Blog>[] }) {
   return (
     <section className="w-full py-5">
       <h2 className="mb-8 text-sm tracking-widest text-gray-700 uppercase dark:text-gray-400">
         Latest Blog
       </h2>
 
-      <div className="grid gap-6">
-        {posts.slice(0, MAX_DISPLAY).map((post) => (
-          <article key={post.slug} className="group relative">
-            <CustomLink href={`/blog/${post.slug}`} className="relative block rounded-lg">
-              <div className="flex flex-col">
-                <h3 className="text-lg text-gray-900 dark:text-white">{post.title}</h3>
-                <p className="mt-2 line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
-                  {post.summary.split(' ').slice(0, 10).join(' ')}...
-                </p>
+      <ul className="space-y-10">
+        {posts.slice(0, MAX_DISPLAY).map(({ slug, date, title, summary, tags }) => (
+          <li key={slug} className="py-4">
+            <article className="space-y-2">
+              <dl>
+                <dt className="sr-only">Published on</dt>
+                <dd className="text-sm text-gray-500 dark:text-gray-400">
+                  <time dateTime={date}>{formatDate(date)}</time>
+                </dd>
+              </dl>
+              <div className="space-y-3">
+                <div className="space-y-2">
+                  <h3 className="hover:text-primary-600 dark:hover:text-primary-400 text-xl font-medium text-gray-800 dark:text-gray-200">
+                    <CustomLink href={`/blog/${slug}`}>{title}</CustomLink>
+                  </h3>
+                  <div className="flex flex-wrap gap-1">
+                    {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                  </div>
+                </div>
+                <p className="prose max-w-none text-gray-700 dark:text-gray-300">{summary}</p>
               </div>
-            </CustomLink>
-          </article>
+            </article>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <div className="mt-8">
         <CustomLink
           href="/blog"
-          className="text-sm tracking-wider text-gray-700 dark:text-gray-400"
+          className="text-sm font-medium text-gray-700 hover:underline dark:text-gray-400"
         >
-          Browse all Blog
+          Browse all Blog →
         </CustomLink>
       </div>
     </section>
-  )
-}
-
-function SocialLinks() {
-  return (
-    <div className="mt-5 flex items-center gap-2 py-3 text-sm text-gray-500 dark:text-gray-400">
-      <CustomLink
-        href="https://github.com/yourusername"
-        className="hover:text-gray-700 hover:underline dark:hover:text-gray-300"
-      >
-        GitHub
-      </CustomLink>
-      <span className="text-gray-400 dark:text-gray-600">/</span>
-      <CustomLink
-        href="mailto:youremail@example.com"
-        className="hover:text-gray-700 hover:underline dark:hover:text-gray-300"
-      >
-        Email
-      </CustomLink>
-      <span className="text-gray-400 dark:text-gray-600">/</span>
-      <CustomLink
-        href="https://twitter.com/yourusername"
-        className="hover:text-gray-700 hover:underline dark:hover:text-gray-300"
-      >
-        Twitter
-      </CustomLink>
-    </div>
   )
 }
