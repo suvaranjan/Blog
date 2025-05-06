@@ -10,6 +10,7 @@ import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 import Navbar from '@/components/nav-footer/Navbar'
 import Footer from '@/components/nav-footer/Footer'
+import { roboto_mono, timesNewRoman } from 'lib/font'
 // import Footer from '@/components/nav-footer/Footer'
 
 const space_grotesk = Inter({
@@ -64,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${space_grotesk.variable} ${timesNewRoman.variable} ${roboto_mono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link

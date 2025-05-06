@@ -75,7 +75,7 @@ export default function ListLayout({
         <div className="space-y-1 pt-6 pb-8">
           <h1 className="text-2xl tracking-tight text-gray-900 dark:text-gray-100">{title}</h1>
           <p className="text-md text-gray-500 dark:text-gray-400">
-            Just me, overthinking... again.
+            My Notes, Ideas, experiments, and thoughts
           </p>
         </div>
         <ul>
