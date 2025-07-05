@@ -43,7 +43,7 @@ const Pre = ({ children, ...props }: PreProps) => {
   }
 
   return (
-    <div className="relative border border-neutral-200 dark:border-none">
+    <div className="relative rounded-md border border-neutral-200 dark:border-none">
       <pre ref={preRef} {...props} className={`${props.className || ''} relative`}>
         {children}
       </pre>
