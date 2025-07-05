@@ -43,7 +43,7 @@ const Pre = ({ children, ...props }: PreProps) => {
   }
 
   return (
-    <div className="group relative border border-neutral-200 dark:border-none">
+    <div className="relative border border-neutral-200 dark:border-none">
       <pre ref={preRef} {...props} className={`${props.className || ''} relative`}>
         {children}
       </pre>
@@ -51,7 +51,7 @@ const Pre = ({ children, ...props }: PreProps) => {
       <button
         aria-label="Copy code"
         onClick={onCopy}
-        className="absolute top-2 right-2 z-10 rounded p-1 text-gray-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:text-gray-100"
+        className="absolute top-2 right-2 z-10 rounded p-1 text-gray-400"
       >
         {copied ? icons.checked : icons.copy}
       </button>
