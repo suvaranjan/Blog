@@ -10,7 +10,7 @@ import {
   Action,
   useRegisterActions,
 } from 'kbar'
-import { NormalIcon, NormalIconType } from '../icons/Icon'
+import { Icon, IconType } from '../icons/Icon'
 
 export const KBarModal = ({ actions, isLoading }: { actions: Action[]; isLoading: boolean }) => {
   useRegisterActions(actions, [actions])
@@ -78,8 +78,8 @@ const RenderResults = () => {
               >
                 <div className="flex items-center space-x-2">
                   {item.icon && typeof item.icon === 'string' ? (
-                    <NormalIcon
-                      name={item.icon as NormalIconType}
+                    <Icon
+                      name={item.icon as IconType}
                       size={20}
                       className={`${active ? 'text-white' : 'text-gray-400 dark:text-gray-300'}`}
                     />

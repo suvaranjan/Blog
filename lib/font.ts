@@ -1,6 +1,6 @@
-import { Inter, Roboto_Mono, Poppins, Tinos, Roboto } from 'next/font/google'
-// import { Roboto_Mono } from 'next/font/google'
-import localFont from 'next/font/local'
+// import { Inter, Roboto_Mono, Poppins, Tinos, Roboto } from 'next/font/google'
+import { Inter } from 'next/font/google'
+// import localFont from 'next/font/local'
 
 // Manrope
 
@@ -17,11 +17,11 @@ import localFont from 'next/font/local'
 //   variable: "--font-inter",
 // });
 
-export const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-mono',
-})
+// export const roboto_mono = Lora({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-roboto-mono',
+// })
 
 // export const poppins = Poppins({
 //   subsets: ["latin"],
@@ -35,7 +35,13 @@ export const roboto_mono = Roboto_Mono({
 //   variable: '--font-times',
 // })
 
-export const timesNewRoman = localFont({
-  src: './times.ttf',
-  variable: '--font-times',
+// export const timesNewRoman = localFont({
+//   src: './times.ttf',
+//   variable: '--font-times',
+// })
+
+export const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
 })

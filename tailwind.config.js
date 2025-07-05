@@ -42,6 +42,7 @@ module.exports = {
             },
             'h1,h2': {
               fontWeight: '500',
+              fontSize: '1.5rem',
               letterSpacing: theme('letterSpacing.tight'),
             },
             h3: {

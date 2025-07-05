@@ -2,7 +2,6 @@ import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
-import { Inter } from 'next/font/google'
 import { KBarSearchProvider } from '@/components/kbar/KBar'
 import Container from '@/components/Container'
 import siteMetadata from '@/data/siteMetadata'
@@ -10,14 +9,7 @@ import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 import Navbar from '@/components/nav-footer/Navbar'
 import Footer from '@/components/nav-footer/Footer'
-import { roboto_mono, timesNewRoman } from 'lib/font'
-// import Footer from '@/components/nav-footer/Footer'
-
-const space_grotesk = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-grotesk',
-})
+import { inter } from 'lib/font'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -65,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} ${timesNewRoman.variable} ${roboto_mono.variable} scroll-smooth`}
+      className={`${inter.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link

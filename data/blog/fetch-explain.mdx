@@ -1,0 +1,269 @@
+---
+title: fetch()
+date: '2016-03-08'
+tags: ['fetch', 'api', 'javascript', 'http']
+draft: false
+summary: Learn all the core concepts, structure, options, and behavior behind the JavaScript fetch() API for making HTTP requests.
+---
+
+# Complete Beginner's Guide to fetch() in JavaScript
+
+The **fetch()** function in JavaScript is a powerful and modern way to make HTTP requests from the browser. It’s used to send or receive data between a web application and a server — like getting posts from a blog API, submitting form data, or updating a user’s profile.
+
+This guide will explain all the core concepts, structure, options, and behavior behind **fetch()**.
+
+## What is fetch()?
+
+**fetch()** is a browser-provided Web API that allows JavaScript to perform network requests.
+It replaces older approaches like **XMLHttpRequest** and is promise-based, making it easier to use with modern asynchronous code (using **.then()** or **async/await**).
+
+### Basic Usage
+
+```js
+// Corrected URL: was '[https://example.com/api/data](https://example.com/api/data)'
+fetch('[https://example.com/api/data](https://example.com/api/data)')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+
+In this basic example:
+
+1.  The browser sends a GET request to the given URL.
+2.  When a response is received, it is converted to JSON.
+3.  The data is logged to the console.
+
+## The Structure of a **fetch()** Call
+
+```js
+fetch(url, options);
+```
+
+-   **url**: The endpoint you want to access.
+-   **options** (optional): An object that defines how the request should be made.
+
+The **options** object allows you to specify:
+
+-   HTTP method (GET, POST, PUT, etc.)
+-   Headers
+-   Body (for methods like POST)
+-   Credentials (like cookies)
+-   Caching behavior
+-   Redirect behavior
+-   Mode (for CORS control)
+-   Referrer information
+-   Signal for cancellation
+
+## All Core Concepts of **fetch()**
+
+Let’s break down each part of the **fetch()** **options** object.
+
+### 1. **method**
+
+Specifies the HTTP method to use.
+
+```js
+method: 'POST'
+```
+
+Common methods:
+
+-   **GET**: Retrieve data
+-   **POST**: Send new data
+-   **PUT**: Replace existing data
+-   **PATCH**: Update part of existing data
+-   **DELETE**: Remove data
+
+Default is **GET**.
+
+### 2. **headers**
+
+Used to send additional information with the request, such as the type of data being sent or authentication tokens.
+
+```js
+headers: {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer token'
+}
+```
+
+Common headers:
+
+-   **Content-Type**: Tells the server what type of data you're sending (e.g., **application/json**, **text/plain**)
+-   **Authorization**: For authentication
+-   **Accept**: Indicates the type of response expected (e.g., **application/json**)
+
+### 3. **body**
+
+The data you want to send to the server (used with methods like **POST**, **PUT**, and **PATCH**).
+
+```js
+body: JSON.stringify({
+  name: 'Alice',
+  age: 30
+})
+```
+
+The body must be a string, usually in JSON format. Use **JSON.stringify()** to convert a JavaScript object into a JSON string.
+
+**Note:** Do not include a body with **GET** or **DELETE** requests (according to HTTP spec).
+
+### 4. **credentials**
+
+Controls whether cookies or other credentials are sent with the request.
+
+```js
+credentials: 'include'
+```
+
+Possible values:
+
+-   **'omit'**: Never send cookies (default)
+-   **'same-origin'**: Send cookies only for same-origin requests
+-   **'include'**: Always send cookies (even to cross-origin)
+
+Use **'include'** when making authenticated requests where sessions rely on cookies.
+
+### 5. **mode**
+
+Defines the mode of the request. Primarily used for CORS (Cross-Origin Resource Sharing).
+
+```js
+mode: 'cors'
+```
+
+Options:
+
+-   **'cors'**: Allow cross-origin requests (default for cross-origin URLs)
+-   **'same-origin'**: Only allow same-origin requests
+-   **'no-cors'**: Limited access, used to send requests without reading the response (used for analytics and logging)
+
+If your frontend and backend are on different domains, you’ll need **mode: 'cors'** and the server must allow it.
+
+### 6. **cache**
+
+Defines the caching behavior.
+
+```js
+cache: 'no-cache'
+```
+
+Options:
+
+-   **'default'**
+-   **'no-store'**
+-   **'reload'**
+-   **'no-cache'**
+-   **'force-cache'**
+-   **'only-if-cached'**
+
+### 7. **redirect**
+
+Controls how redirects are handled.
+
+```js
+redirect: 'follow'
+```
+
+Options:
+
+-   **'follow'**: Automatically follow redirects (default)
+-   **'manual'**: Return the redirect response, don’t follow
+-   **'error'**: Throw an error if a redirect occurs
+
+### 8. **referrer** and **referrerPolicy**
+
+Specify the **Referer** header (misspelled historically as **referrer**) that tells the server where the request came from.
+
+```js
+referrerPolicy: 'no-referrer'
+```
+
+Common values:
+
+-   **'no-referrer'**
+-   **'origin'**
+-   **'strict-origin-when-cross-origin'** (default)
+
+### 9. **signal**
+
+Allows you to abort a **fetch** request using an **AbortController**.
+
+```js
+const controller = new AbortController();
+fetch('/some-api', { // This 'fetch' is inside a code block, so it remains as is.
+  signal: controller.signal
+});
+
+controller.abort(); // cancels the request
+```
+
+Useful when you want to cancel a request (e.g., if the user navigates away).
+
+## What Happens Internally When You Call **fetch()**
+
+Here’s a simplified breakdown of how **fetch()** works behind the scenes:
+
+1.  You call **fetch()** with a URL and options.
+2.  The browser:
+    * Validates the input.
+    * Prepares an HTTP request packet (URL, method, headers, body, cookies if allowed).
+    * If it's a cross-origin request (**mode: 'cors'**), the browser may first send a preflight **OPTIONS** request to ask the server if the actual request is allowed.
+    * If allowed, the actual HTTP request is sent.
+3.  The request is sent over the network (using HTTP or HTTPS protocol).
+4.  The server receives it and processes it.
+5.  The server sends back an HTTP response.
+6.  The browser delivers that response as a **Response** object to your JavaScript (you can handle this with **.then()** or **await**).
+
+## Example: Full Fetch with All Options
+
+```js
+// Corrected URL: was '[https://api.example.com/users](https://api.example.com/users)'
+fetch('[https://api.example.com/users](https://api.example.com/users)', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer your_token'
+  },
+  body: JSON.stringify({ name: 'John', age: 25 }),
+  credentials: 'include',
+  mode: 'cors',
+  cache: 'no-cache',
+  redirect: 'follow',
+  referrerPolicy: 'no-referrer'
+})
+.then(response => {
+  if (!response.ok) { // Text inside code block remains as is
+    throw new Error('Network response was not ok ' + response.statusText); // Text inside code block
+  }
+  return response.json(); // Text inside code block
+})
+.then(data => {
+  console.log('Success:', data); // Text inside code block
+})
+.catch(error => {
+  console.error('Error:', error); // Text inside code block
+});
+```
+
+## Summary
+
+| Feature         | Purpose                                           |
+|-----------------|---------------------------------------------------|
+| **url** | The address to which the request is sent          |
+| **method** | HTTP method (GET, POST, etc.)                     |
+| **headers** | Metadata about the request (e.g. content type, auth) |
+| **body** | Data sent with request (string, typically JSON)   |
+| **credentials** | Controls whether cookies are included             |
+| **mode** | CORS behavior                                     |
+| **cache** | Caching strategy                                  |
+| **redirect** | Redirect handling                                 |
+| **referrerPolicy**| Controls what referrer info is sent               |
+| **signal** | Cancels the request if needed                     |
+
+## Final Notes
+
+-   **fetch()** is the modern standard for network requests in JavaScript.
+-   It's asynchronous and returns a **Promise**.
+-   It requires understanding of HTTP concepts like methods, headers, and CORS.
+-   Always handle errors (**try/catch** or **.catch()**) to avoid crashes on failed requests.
+-   Use **async/await** for cleaner syntax if preferred.

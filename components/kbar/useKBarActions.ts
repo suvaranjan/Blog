@@ -14,7 +14,7 @@ export const useKBarActions = () => {
       name: 'Home',
       shortcut: ['h'],
       section: 'Navigation',
-      icon: 'home',
+      icon: 'Home',
       perform: () => router.push('/'),
     },
     {
@@ -22,7 +22,7 @@ export const useKBarActions = () => {
       name: 'Blog',
       shortcut: ['b'],
       section: 'Navigation',
-      icon: 'book',
+      icon: 'Book',
       perform: () => router.push('/blog'),
     },
   ]
@@ -36,7 +36,7 @@ export const useKBarActions = () => {
       name: post.title,
       keywords: post.summary || '',
       section: 'Blog',
-      icon: 'blog',
+      icon: 'Blog',
       perform: () => router.push('/' + post.path),
     }))
   }
