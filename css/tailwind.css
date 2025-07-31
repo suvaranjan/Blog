@@ -7,7 +7,10 @@
 @theme {
   /* Font families */
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+  /* --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; */
+
+  --font-sans: var(--font-geist-mono), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   /* Colors */
@@ -160,15 +163,21 @@ html.dark .shiki span {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-/* Code block title style. Feel free to edit */
+/* Code block title style. */
 .remark-code-title {
   @apply relative border-t border-r border-l border-gray-200 px-4 py-3 font-mono text-sm font-semibold dark:border-none;
-  @apply bg-neutral-100 text-gray-600 dark:bg-neutral-800 dark:text-gray-300;
+  @apply text-gray-600 dark:bg-neutral-800 dark:text-gray-300;
   @apply rounded-t-md;
-  padding-right: 3.5rem; /* Make space for dots */
+  /* padding-right: 3.5rem; for three dot */
 }
 
-/* Create the three dots using a pseudo-element */
+/* Adjust the pre element to connect perfectly */
+.remark-code-title + div > pre {
+  @apply mt-0 rounded-t-none;
+}
+
+/* 
+// Create the three dots using a pseudo-element
 .remark-code-title::before {
   content: '';
   position: absolute;
@@ -179,28 +188,23 @@ html.dark .shiki span {
   gap: 0.5rem;
 }
 
-/* Create the dots using box shadows */
+// Create the dots using box shadows
 .remark-code-title::before {
   content: '';
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  /* Mac-style red, yellow, green dots using box-shadow trick */
   box-shadow:
     20px 0 0 #f87171,
     40px 0 0 #fbbf24,
     60px 0 0 #4ade80;
 }
 
-/* Dark mode colors for three dot */
+// Dark mode colors for three dot
 .dark .remark-code-title::before {
   box-shadow:
     20px 0 0 #ef4444,
     40px 0 0 #eab308,
     60px 0 0 #22c55e;
 }
-
-/* Adjust the pre element to connect perfectly */
-.remark-code-title + div > pre {
-  @apply mt-0 rounded-t-none;
-}
+*/

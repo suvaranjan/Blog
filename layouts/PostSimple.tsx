@@ -5,6 +5,7 @@ import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
+import { Icon } from '@/components/icons/Icon'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -22,12 +23,12 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
       <article>
         <div>
           <header>
-            <div className="space-y-4 border-b border-gray-200 py-10 dark:border-gray-700">
+            <div className="space-y-2 border-b border-gray-200 py-10 dark:border-gray-700">
               <Link
                 href="/blog"
-                className="group inline-flex items-center text-sm font-medium text-gray-500 transition-all duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+                className="group mb-8 inline-flex items-center text-sm text-gray-500 transition-all duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
               >
-                Back to blog
+                <Icon name="ArrowLeft" size={16} className="mr-2" /> Writing
               </Link>
               <div>
                 <h1 className="text-2xl leading-9 tracking-tight text-gray-900 sm:text-3xl sm:leading-10 md:text-3xl md:leading-14 dark:text-gray-100">
@@ -37,7 +38,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                  <dd className="text-sm leading-6 text-gray-500 dark:text-gray-400">
                     <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                   </dd>
                 </div>
@@ -46,7 +47,9 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:divide-y-0 dark:divide-gray-700">
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
-              <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
+              <div className="prose dark:prose-invert max-w-none pt-10 pb-8 leading-relaxed">
+                {children}
+              </div>
             </div>
 
             <footer>

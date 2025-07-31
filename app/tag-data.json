@@ -1,6 +1,9 @@
 {
+  "pdf": 1,
+  "nextjs": 1,
+  "javascript": 2,
+  "http": 2,
   "fetch": 1,
   "api": 1,
-  "javascript": 1,
-  "http": 1
+  "good": 1
 }

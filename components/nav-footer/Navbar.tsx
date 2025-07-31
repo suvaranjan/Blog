@@ -1,13 +1,13 @@
 import { Icon } from '../icons/Icon'
-import SearchButton from './SearchButton'
+// import SearchButton from './SearchButton'
 import ThemeSwitch from './ThemeSwitch'
 import Link from 'next/link'
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm dark:bg-neutral-900/80">
+    <nav className="bg-white backdrop-blur-sm dark:bg-neutral-900/80">
       <div>
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-6">
           <Link
             href="/blog"
             className="flex items-center space-x-3 transition-opacity hover:opacity-80"
@@ -17,7 +17,8 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center space-x-5">
-            <SearchButton />
+            {/* <SearchButton /> */}
+            {/* <SectionNav /> */}
             <ThemeSwitch />
           </div>
         </div>

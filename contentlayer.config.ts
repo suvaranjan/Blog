@@ -158,7 +158,8 @@ export default makeSource({
         rehypeShiki,
         {
           themes: {
-            light: 'github-light',
+            light: 'min-light',
+            // light: 'github-light',
             dark: 'min-dark',
           },
         },

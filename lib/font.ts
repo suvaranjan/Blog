@@ -1,8 +1,11 @@
 // import { Inter, Roboto_Mono, Poppins, Tinos, Roboto } from 'next/font/google'
-import { Inter } from 'next/font/google'
+import { Geist_Mono, Inter } from 'next/font/google'
 // import localFont from 'next/font/local'
 
-// Manrope
+export const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 // export const inter = Inter({
 //   subsets: ["latin"],

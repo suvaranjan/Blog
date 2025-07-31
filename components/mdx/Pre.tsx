@@ -33,7 +33,7 @@ const Pre = ({ children, ...props }: PreProps) => {
       </svg>
     ),
     checked: (
-      <svg width="18" height="18" viewBox="0 0 15 15" fill="none">
+      <svg width="16" height="16" viewBox="0 0 15 15" fill="none">
         <path
           d="M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z"
           fill="currentColor"
@@ -43,15 +43,19 @@ const Pre = ({ children, ...props }: PreProps) => {
   }
 
   return (
-    <div className="relative rounded-md border border-neutral-200 dark:border-none">
-      <pre ref={preRef} {...props} className={`${props.className || ''} relative`}>
+    <div className="group relative rounded-md">
+      <pre
+        ref={preRef}
+        {...props}
+        className={`${props.className || ''} relative border dark:border-none`}
+      >
         {children}
       </pre>
 
       <button
         aria-label="Copy code"
         onClick={onCopy}
-        className="absolute top-2 right-2 z-10 rounded p-1 text-gray-400"
+        className="absolute top-2 right-2 z-10 rounded border border-neutral-300 bg-white p-2 text-black opacity-0 transition-opacity group-hover:opacity-100 dark:border-none dark:bg-neutral-800 dark:text-white"
       >
         {copied ? icons.checked : icons.copy}
       </button>

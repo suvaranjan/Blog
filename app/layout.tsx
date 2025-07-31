@@ -9,7 +9,8 @@ import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 import Navbar from '@/components/nav-footer/Navbar'
 import Footer from '@/components/nav-footer/Footer'
-import { inter } from 'lib/font'
+import { geistMono, inter } from 'lib/font'
+import { SectionNav } from '@/components/nav-footer/SectionNav'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -57,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${inter.variable} scroll-smooth`}
+      className={`${geistMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <KBarSearchProvider>
             <Container>
               <Navbar />
+              <SectionNav />
               <main className="mb-auto">{children}</main>
               <Footer />
             </Container>
