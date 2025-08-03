@@ -1,9 +1,12 @@
 {
+  "ai": 1,
+  "technology": 1,
+  "future": 1,
   "pdf": 1,
-  "nextjs": 1,
-  "javascript": 2,
-  "http": 2,
+  "project": 1,
+  "smart-pdf-reader": 1,
   "fetch": 1,
   "api": 1,
-  "good": 1
+  "javascript": 1,
+  "http": 1
 }

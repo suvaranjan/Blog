@@ -9,7 +9,7 @@ import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 import Navbar from '@/components/nav-footer/Navbar'
 import Footer from '@/components/nav-footer/Footer'
-import { geistMono, inter } from 'lib/font'
+import { geistMono, inter, jetbrainMono } from 'lib/font'
 import { SectionNav } from '@/components/nav-footer/SectionNav'
 
 export const metadata: Metadata = {
@@ -58,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${geistMono.variable} scroll-smooth`}
+      className={`${geistMono.variable} ${jetbrainMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link

@@ -47,7 +47,7 @@ const Pre = ({ children, ...props }: PreProps) => {
       <pre
         ref={preRef}
         {...props}
-        className={`${props.className || ''} relative border dark:border-none`}
+        className={`${props.className || ''} font-jetbrain relative border text-sm leading-6.5 dark:border-none`}
       >
         {children}
       </pre>
