@@ -1,14 +1,14 @@
 'use client'
 
+import Tag from '@/components/Tag'
+import { CatagoryNav } from '@/components/nav-footer/CatagoryNav'
+import { SectionNav } from '@/components/nav-footer/SectionNav'
 import { usePathname } from 'next/navigation'
 import { formatDate } from '../utils/formatDate'
 import { CoreContent } from '../utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
-import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { CatagoryNav } from '@/components/nav-footer/CatagoryNav'
-import { SectionNav } from '@/components/nav-footer/SectionNav'
 import SearchButton from '@/components/nav-footer/SearchButton'
 
 interface PaginationProps {
@@ -24,7 +24,7 @@ interface ListLayoutProps {
 }
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const basePath = pathname
     .replace(/^\//, '')
     .replace(/\/page\/\d+\/?$/, '')
