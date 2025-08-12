@@ -24,7 +24,7 @@ interface ListLayoutProps {
 }
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const pathname = usePathname();
+  const pathname = usePathname()
   const basePath = pathname
     .replace(/^\//, '')
     .replace(/\/page\/\d+\/?$/, '')
